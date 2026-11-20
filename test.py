@@ -7,32 +7,32 @@ with app.app_context():
 
     with app.test_client() as client:
         #test signup as normal user
-        res = client.post('/signup', json = {"username":"jeniffer",
-                                             "email":"jeniffer@test.com",
-                                             "password":"jeniffer1",
+        res = client.post('/signup', json = {"username":"jenifer",
+                                             "email":"jenifer@test.com",
+                                             "password":"jenifer1",
                                              "role": "user"})
 
         print("signup", res.status_code, res.get_json())
 
         #test signup as an admin
         res = client.post('/signup', json={
-            "username":"adminUser",
+            "username":"AdminUser",
             "email":"admin@test.com",
-            "password":"admin1",
+            "password":"admin2",
             "role":"admin",
             "admin_key":"my_secretkey"
         })
         print("signup", res.status_code, res.get_json())
 
         #test login
-        res = client.post('/login', json = {"username":"jeniffer",
-                                            "password":"jeniffer1"})
+        res = client.post('/login', json = {"username":"jenifer",
+                                            "password":"jenifer1"})
 
         print("login", res.status_code, res.get_json())
 
         #test duplicate
         res = client.post('/signup', json={
-            "username": "jeniffer",
-            "password": "jeniffer1"
+            "username": "jenifer",
+            "password": "jenifer1"
         })
         print("Duplicate signup", res.status_code, res.get_json())
