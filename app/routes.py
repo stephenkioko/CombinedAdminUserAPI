@@ -16,6 +16,13 @@ def role_required(role):
 
         return decorated_function
     return decorator
+
+@app.route('/')
+def home():
+    return jsonify({
+        "message": "Admin User API is running successfully!"
+    }), 200
+
 @app.route('/signup', methods = ['POST'])
 def signup():
     data = request.get_json()
